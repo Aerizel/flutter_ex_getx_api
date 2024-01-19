@@ -1,25 +1,16 @@
 import 'package:get/get.dart';
-import 'package:getx_api/page/model/api_model.dart';
-import 'package:getx_api/page/services/dio_service.dart';
+import '../model/api_model.dart';
+import '../api/connection/api_sample/api_list.dart';
 
 class ApiController extends GetxController {
-  RxList<ApiModel> posts = RxList();
+  Future<List<ApiModel>> futureBuilding = Future.value([]);
 
-  var url = "https://jsonplaceholder.typicode.com/posts";
-
-  getPost() async {
-    var response = await DioService().getMethod(url);
-
-    if(response.statusCode == 200) {
-      response.data.forEach((element) {
-        posts.add(ApiModel.fromJson(element));
-      });
-    }
+  Future<List<ApiModel>> getFutureBuilding() async {
+    final model = await ApiList.getApiData();
+    return model;
   }
 
-  @override
-  void onInit() {
-    getPost();
-    super.onInit();
+  Future<void> fetchApiSample() async {
+    futureBuilding = getFutureBuilding();
   }
 }
