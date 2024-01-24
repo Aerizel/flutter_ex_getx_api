@@ -5,7 +5,7 @@ import '../../api.dart';
 class ApiList {
   static Future<List<ApiModel>> getApiData() async {
     try {
-      final res = await apiSample.get('https://jsonplaceholder.typicode.com/posts');
+      final res = await apiSample.get('/posts');
       List json = res.data;
       List<ApiModel> list = [];
       list = json.map((data) => ApiModel.fromJson(data)).toList();
