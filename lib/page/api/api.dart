@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-const String _baseUrl = "";
+const String _baseUrl = "https://jsonplaceholder.typicode.com";
 
 var apiSample = Dio(
   BaseOptions(
